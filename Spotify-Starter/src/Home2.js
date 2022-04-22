@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { ethers } from "ethers"
-import { Row, Col, Card, Button, Spin, Alert } from 'antd'
+import { Row, Col, Button } from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
+import Album from "./pages/Album";
+import Spotify from "./images/Spotify.png";
 
+const Home2 = ({ marketplace, nft, setNftAlbum}) => {
 
-
-const Home2 = ({ marketplace, nft }) => {
+  
   const [loading, setLoading] = useState(true)
   const [items, setItems] = useState([])
+  
   const loadMarketplaceItems = async () => {
     // Load all unsold items
     const itemCount = await marketplace.itemCount()
@@ -31,12 +35,13 @@ const Home2 = ({ marketplace, nft }) => {
           image: metadata.image
         })
       }
+      console.log(item);
+      const setNftAlbum = item.url
     }
     setLoading(false)
-    console.log(items)
     setItems(items)
   }
-
+  
   const buyMarketItem = async (item) => {
     await (await marketplace.purchaseItem(item.itemId, { value: item.totalPrice })).wait()
     loadMarketplaceItems()
@@ -47,30 +52,35 @@ const Home2 = ({ marketplace, nft }) => {
   }, [])
   if (loading) return (
     <main style={{ padding: "1rem 0" }}>
-    <Spin />
       <h2>Loading...</h2>
     </main>
   )
   return (
     <div className="flex justify-center">
-      {items.length > 0 ? (
+      {items.length > 0 ?
         <div className="px-5 container">
           <Row xs={1} md={2} lg={4} className="g-4 py-5">
             {items.map((item, idx) => (
-              <Col key={idx.toString()} className="overflow-hidden">
+              <Col key={idx} className="overflow-hidden">
                 <Card>
-                  <Card.Img variant="top" src={item.image} />
+                {/* <img src={Spotify}/> */}
+                <audio controls src={item.image}  autoplay>
+            Audio content cannot be played
+        </audio>
+                {/* <div className="embed-responsive embed-responsive-16by9">
+      <iframe title="embedsPage" className="embed-responsive-item" src={item.image} 
+      
+        allowfullscreen></iframe>
+    </div>             */}
                   <Card.Body color="secondary">
                     <Card.Title>{item.name}</Card.Title>
-                    <Card.Text>{item.description}</Card.Text>
+                    <Card.Text>
+                      {item.description}
+                    </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <div className="d-grid">
-                      <Button
-                        onClick={() => buyMarketItem(item)}
-                        variant="primary"
-                        size="lg"
-                      >
+                    <div className='d-grid'>
+                      <Button onClick={() => buyMarketItem(item)} variant="primary" size="lg">
                         Buy for {ethers.utils.formatEther(item.totalPrice)} ETH
                       </Button>
                     </div>
@@ -80,18 +90,11 @@ const Home2 = ({ marketplace, nft }) => {
             ))}
           </Row>
         </div>
-      ) : (
-        <main style={{ padding: "1rem 0" }}>
-        <Spin tip="Adios Mutherfucker...">
-    <Alert
-      message="Oh Snaps!"
-      description="You aint got no NFT's bruh...."
-      type="info"
-    />
-  </Spin>,
-          ,<h2>No listed assets</h2>
-        </main>
-      )}
+        : (
+          <main style={{ padding: "1rem 0" }}>
+            <h2>No listed assets</h2>
+          </main>
+        )}
     </div>
   );
 }

@@ -53,6 +53,8 @@ export default function MyListedItems({ marketplace, nft, account }) {
           description: metadata.description,
           image: metadata.image
         }
+        console.log(item)
+
         listedItems.push(item)
         // Add listed item to sold items array if sold
         if (i.sold) soldItems.push(item)
@@ -77,14 +79,27 @@ export default function MyListedItems({ marketplace, nft, account }) {
             <h2>Listed</h2>
           <Row xs={1} md={2} lg={4} className="g-4 py-3">
             {listedItems.map((item, idx) => (
+              
+            
+              
               <Col key={idx} className="overflow-hidden">
                 <Card>
                   <Card.Img variant="top" src={item.image} />
-                  <Card.Footer>{ethers.utils.formatEther(item.totalPrice)} ETH</Card.Footer>
+                  
+                  <Card.Footer>
+
+                  <Card.Text>
+                      {item.description}
+                    </Card.Text>
+                  <p>{ethers.utils.formatEther(item.totalPrice)} ETH</p>
+                  
+                  
+                  </Card.Footer>
                 </Card>
               </Col>
             ))}
           </Row>
+          
             {soldItems.length > 0 && renderSoldItems(soldItems)}
         </div>
         : (

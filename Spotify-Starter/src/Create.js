@@ -5,7 +5,6 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 const Create = ({ marketplace, nft }) => {
-  console.log(marketplace, nft)
   const [image, setImage] = useState('')
   const [price, setPrice] = useState(null)
   const [name, setName] = useState('')
@@ -23,6 +22,7 @@ const Create = ({ marketplace, nft }) => {
       }
     }
   }
+
   const createNFT = async () => {
     if (!image || !price || !name || !description) return
     try{
@@ -48,23 +48,49 @@ const Create = ({ marketplace, nft }) => {
     <div className="container-fluid mt-5">
       <div className="row">
         <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '1000px' }}>
-          <div className="content mx-auto">
-            <Row className="g-4">
+          <div className="content mx-auto">           
+           <div className="g-4">
+           <div className="g-4i">
+              <Form.Group className="mb-3">
+               <Form.Label>Select Image</Form.Label>
               <Form.Control
                 type="file"
                 required
                 name="file"
                 onChange={uploadToIPFS}
               />
+              </Form.Group>
+             </div>
+             <div className="g-4i">      
               <Form.Control onChange={(e) => setName(e.target.value)} size="lg" required type="text" placeholder="Name" />
+             </div>
+             <div className="g-4i">
+             <Form.Control onChange={(e) => setName(e.target.value)} size="lg" required type="text" placeholder="Address" />
+             </div>
+             <div className="g-4i">
+             <Form.Control onChange={(e) => setName(e.target.value)} size="lg" required type="text" placeholder="Email" />
+             </div>
+             
+             <p>Job1</p>
+             <div className="g-4i"> 
               <Form.Control onChange={(e) => setDescription(e.target.value)} size="lg" required as="textarea" placeholder="Description" />
-              <Form.Control onChange={(e) => setPrice(e.target.value)} size="lg" required type="number" placeholder="Price in ETH" />
+             </div>
+             <p>Job2</p>
+             <div className="g-4i"> 
+              <Form.Control onChange={(e) => setDescription(e.target.value)} size="lg" required as="textarea" placeholder="Description" />
+             </div>
+             <p>Job3</p>
+             <div className="g-4i"> 
+              <Form.Control onChange={(e) => setDescription(e.target.value)} size="lg" required as="textarea" placeholder="Description" />
+             </div>
+             
+              {/* <Form.Control onChange={(e) => setPrice(e.target.value)} size="lg" required type="number" placeholder="Price in ETH" /> */}
               <div className="d-grid px-0">
                 <Button onClick={createNFT} variant="primary" size="lg">
                   Create & List NFT!
                 </Button>
               </div>
-            </Row>
+            </div>
           </div>
         </main>
       </div>

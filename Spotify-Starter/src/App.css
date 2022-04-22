@@ -1,20 +1,35 @@
 @import '~antd/dist/antd.css';
 
+#background-video{
+
+  height: 100%;
+  width: 100%;
+  float: left;
+  top: 0;
+  padding: none;
+  position: fixed; /* optional depending on what you want to do in your app */
+  
+  
+  }
+
 .ant-layout {
     min-height: 100vh;
+
 }
 
 .ant-layout-sider {
-    background-image: linear-gradient(#1e2422, #000000);
+
+    
     background-attachment:fixed;
     width: 800px;
     padding: 30px;
-    color: white;
+    /* color: white; */
 }
 
 .ant-layout-content {
-    background-image: linear-gradient(#494B4A, #030404);
-    background-attachment:fixed;
+    /* background-image: linear-gradient(#000000, #ffffff);
+    background-attachment:fixed; */
+    background: tr;
 }
 
 .ant-layout-footer {
@@ -187,4 +202,55 @@
   justify-content: space-between;
   background-color: transparent;
  
+}
+
+.card-img-top {
+  border: 5px solid rgba(0, 0, 0, 0.35);
+  
+  height: 300px;
+  width: 300px;
+  
+}
+
+.card {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.89);
+  width: 330px;
+  height: 80%;
+  border-radius: 5%;
+  box-shadow:
+    inset 0 0 50px rgba(255, 255, 255, 0.124),      /* inner white */
+    inset 20px 0 80px rgba(255, 225, 0, 0.2),   /* inner left magenta short */
+    inset -20px 0 80px rgba(152, 184, 184, 0.124),  /* inner right cyan short */
+    inset 20px 0 300px rgb(7, 5, 5),  /* inner left magenta broad */
+    inset -20px 0 300px rgba(0, 0, 0, 0.857), /* inner right cyan broad */
+    0 0 50px rgba(255, 255, 255, 0.131),            /* outer white */
+    -10px 0 80px rgba(14, 0, 77, 0.131),        /* outer left magenta */
+    10px 0 80px rgba(0, 255, 255, 0.097);         /* outer right cyan */
+
+
+  
+}
+.iframeframe {
+  background-image: "./market";
+  margin: 0;
+  padding: 0;
+  display: inline-block; 
+}
+/* img {
+  height: 100px;
+  width: 100px;
+} */
+.g-4 {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(236, 18, 18);
+}
+.g-4i {
+  padding: 10px;
+  background-color: #000000;
+}
+.mb-3 {
+  color: #1DB954;
 }

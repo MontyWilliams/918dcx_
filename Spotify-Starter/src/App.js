@@ -19,8 +19,16 @@ import Create from "./Create.js";
 import MyListedItems from "./MyListedItems.js";
 import MyPurchases from "./MyPurchases.js";
 import Home2 from "./Home2.js";
+// import { video} from "react-video-player"
 const { Header, Footer, Sider, Content } = Layout;
 
+{/* <Video controls src={item.image}  autoplay>
+Audio content cannot be played
+</Video> */}
+<video id="background-video" loop autoPlay>
+<source src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4" type="video/mp4" />
+Your browser does not support the video tag.
+</video>
 function App() {
   const [loading, setLoading] = useState(true);
   const [account, setAccount] = useState(null);
@@ -88,6 +96,7 @@ function App() {
           </div>
         </Sider>
         <Content>
+    
           <div>
             {loading ? (
               <div

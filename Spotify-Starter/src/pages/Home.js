@@ -9,7 +9,7 @@ const { TabPane } = Tabs;
 const Home = () => {
   return (
     <>
-      <Tabs defaultActiveKey="1" centered>
+      <Tabs defaultActiveKey="1" centered >
               <TabPane tab="FEATURED" key="1">
                 <h1 className="featuredTitle">Today Is The Day</h1>
                 <div className="albums">
